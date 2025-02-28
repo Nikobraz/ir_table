@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iRacing Table</title>
+ <!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css"> -->
+</head>
+<style>
+.text {
+    font-size: 24px;
+}
+table, th, td {
+    overflow-wrap: break-word;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+<body>
+{% block content %}
+<table id="data">
+    <tr>
+        <th>Name</th>
+        <th>Oval License</th>
+        <th>Oval SR</th>
+        <th>Oval iR</th>
+        <th>SportCar License</th>
+        <th>SportCar SR</th>
+        <th>SportCar iR</th>
+        <th>Formula License</th>
+        <th>Formula SR</th>
+        <th>Formula iR</th>
+        <th>Dirt Oval License</th>
+        <th>Dirt Oval SR</th>
+        <th>Dirt Oval iR</th>
+        <th>Dirt Road License</th>
+        <th>Dirt Road SR</th>
+        <th>Dirt Road iR</th>
+    </tr>
+    {% for driver in drivers %}
+    <tr>
+        <td>{{ driver.name }}</td>
+        {% if driver.OvalLicense == "Rookie" %}
+        {% set bg_color = '#ff0000' %}
+        {% elif driver.OvalLicense == "Class D" %}
+        {% set bg_color = '#e47f49' %}
+        {% elif driver.OvalLicense == "Class C" %}
+        {% set bg_color = '#facd02' %}
+        {% elif driver.OvalLicense == "Class B" %}
+        {% set bg_color = '#36c412' %}
+        {% elif driver.OvalLicense == "Class A" %}
+        {% set bg_color = '#396bf8' %}
+        {% endif %}
+        <td bgcolor="{{ bg_color }}">{{ driver.OvalLicense }}</td>
+        <td>{{ driver.OvalSR }}</td>
+        <td>{{ driver.OvaliR }}</td>
+        {% if driver.SportCarLicense == "Rookie" %}
+        {% set bg_color = '#ff0000' %}
+        {% elif driver.SportCarLicense == "Class D" %}
+        {% set bg_color = '#e47f49' %}
+        {% elif driver.SportCarLicense == "Class C" %}
+        {% set bg_color = '#facd02' %}
+        {% elif driver.SportCarLicense == "Class B" %}
+        {% set bg_color = '#36c412' %}
+        {% elif driver.SportCarLicense == "Class A" %}
+        {% set bg_color = '#396bf8' %}
+        {% endif %}
+        <td bgcolor="{{ bg_color }}">{{ driver.SportCarLicense }}</td>
+        <td>{{ driver.SportCarSR }}</td>
+        <td>{{ driver.SportCariR }}</td>
+        {% if driver.FormulaLicense == "Rookie" %}
+        {% set bg_color = '#ff0000' %}
+        {% elif driver.FormulaLicense == "Class D" %}
+        {% set bg_color = '#e47f49' %}
+        {% elif driver.FormulaLicense == "Class C" %}
+        {% set bg_color = '#facd02' %}
+        {% elif driver.FormulaLicense == "Class B" %}
+        {% set bg_color = '#36c412' %}
+        {% elif driver.FormulaLicense == "Class A" %}
+        {% set bg_color = '#396bf8' %}
+        {% endif %}
+        <td bgcolor="{{ bg_color }}">{{ driver.FormulaLicense }}</td>
+        <td>{{ driver.FormulaSR }}</td>
+        <td>{{ driver.FormulaiR }}</td>
+        {% if driver.DirtOvalLicense == "Rookie" %}
+        {% set bg_color = '#ff0000' %}
+        {% elif driver.DirtOvalLicense == "Class D" %}
+        {% set bg_color = '#e47f49' %}
+        {% elif driver.DirtOvalLicense == "Class C" %}
+        {% set bg_color = '#facd02' %}
+        {% elif driver.DirtOvalLicense == "Class B" %}
+        {% set bg_color = '#36c412' %}
+        {% elif driver.DirtOvalLicense == "Class A" %}
+        {% set bg_color = '#396bf8' %}
+        {% endif %}
+        <td bgcolor="{{ bg_color }}">{{ driver.DirtOvalLicense }}</td>
+        <td>{{ driver.DirtOvalSR }}</td>
+        <td>{{ driver.DirtOvaliR }}</td>
+        {% if driver.DirtRoadLicense == "Rookie" %}
+        {% set bg_color = '#ff0000' %}
+        {% elif driver.DirtRoadLicense == "Class D" %}
+        {% set bg_color = '#e47f49' %}
+        {% elif driver.DirtRoadLicense == "Class C" %}
+        {% set bg_color = '#facd02' %}
+        {% elif driver.DirtRoadLicense == "Class B" %}
+        {% set bg_color = '#36c412' %}
+        {% elif driver.DirtRoadLicense == "Class A" %}
+        {% set bg_color = '#396bf8' %}
+        {% endif %}
+        <td bgcolor="{{ bg_color }}">{{ driver.DirtRoadLicense }}</td>
+        <td>{{ driver.DirtRoadSR }}</td>
+        <td>{{ driver.DirtRoadiR }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+
+</body>
+</html>
