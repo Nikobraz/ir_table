@@ -1,3 +1,6 @@
-flask
+flask~=3.0.3
 flask_bootstrap
-iracingdataapi
+iracingdataapi~=1.2.2
+flask_sqlalchemy
+SQLAlchemy~=2.0.38
+psycopg2-binary

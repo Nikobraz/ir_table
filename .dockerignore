@@ -3,3 +3,7 @@
 .gitignore
 *.cmd
 data
+.env
+local.env
+docker-compose.yml
+Dockerfile

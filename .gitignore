@@ -1,3 +1,5 @@
 .idea
 data
-build.cmd
+*.cmd
+.env
+local.env

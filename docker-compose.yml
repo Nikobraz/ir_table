@@ -1,0 +1,28 @@
+services:
+  ir_table:
+    container_name: ir_table
+    image: nikobraz/ir_table:develop
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      IR_USER: ${IR_USER}
+      IR_PASS: ${IR_PASS}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+    depends_on:
+      - ${DB_HOST}
+  ir_table_db:
+    container_name: ${DB_HOST}
+    image: postgres:15.1
+    restart: unless-stopped
+    volumes:
+      - ir_table_db_volume:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      - "5432:5432"
+
+volumes:
+  ir_table_db_volume:
+    external: true
