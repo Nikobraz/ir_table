@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from iracingdataapi.client import irDataClient
+import re
 
 import settings
 
@@ -18,7 +19,7 @@ with app.app_context():
 
 class Racer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ir_id = db.Column(db.Integer, unique=True)
+    ir_id = db.Column(db.Integer, unique=True, nullable=False)
 
 
 def parse_drivers_db():
@@ -36,7 +37,17 @@ def get_data():
         data = {}
         driver_name = driver[0]
         driver_id = driver[1]
-        driver_data = idc.member(cust_id=driver_id, include_licenses=True)
+        driver_data = []
+        if  4 < len(str(driver_id)) < 9 and re.match(r'\d+', str(driver_id)):
+            pass
+        else:
+            print('Not valid driver id')
+            continue
+        try:
+            driver_data = idc.member(cust_id=driver_id, include_licenses=True)
+        except Exception as e:
+            print(e)
+            print(f"Error with {driver_name} and {driver_id}")
         data['name'] = driver_data["members"][0]["display_name"]
         data['id'] = driver_data["members"][0]["cust_id"]
 
